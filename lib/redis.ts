@@ -4,12 +4,13 @@ let redis: Redis | undefined;
 
 export function getRedis(): Redis {
   if (redis) return redis;
-  if (
-    !process.env.UPSTASH_REDIS_REST_URL ||
-    !process.env.UPSTASH_REDIS_REST_TOKEN
-  ) {
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+
+  if (!url || !token) {
     throw new Error("Upstash Redis is not configured.");
   }
-  redis = Redis.fromEnv();
+  redis = new Redis({ url, token });
   return redis;
 }
