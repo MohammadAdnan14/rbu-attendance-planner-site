@@ -6,7 +6,7 @@ import { Container } from "./ui/Container";
 import { Badge } from "./ui/Badge";
 import { PlatformButtons } from "./PlatformButtons";
 import { siteConfig } from "@/config/site";
-import { Sparkles, Lock, CheckCircle2 } from "lucide-react";
+import { Sparkles, Lock } from "lucide-react";
 
 const showcaseScreenshots = [
   {
@@ -18,28 +18,31 @@ const showcaseScreenshots = [
   },
   {
     id: "ss_2",
-    label: "What-If Simulator",
+    label: "Dark Mode",
     src: "/screenshots/ss_2.png",
     caption:
-      "Simulate upcoming classes with +Attend, +Claim, and -Miss controls",
+      "Sleek obsidian dark mode theme that reduces eye strain on your portal",
   },
   {
     id: "ss_3",
-    label: "Safe Bunk Margins",
+    label: "What-If Simulator",
     src: "/screenshots/ss_3.png",
-    caption: "Instant calculation of safe bunkable classes per course",
+    caption:
+      "Interactive What-If Simulator with +Attend, +Claim, and -Miss controls",
   },
   {
     id: "ss_4",
-    label: "Attend & Leave Goals",
+    label: "Simulated Attendance",
     src: "/screenshots/ss_4.png",
-    caption: "Actionable recommendation badges for shortage courses",
+    caption:
+      "Simulating future class scenarios with real-time percentage adjustments and course projections",
   },
   {
     id: "ss_5",
-    label: "Course File Table",
+    label: "Post-Simulation Analysis",
     src: "/screenshots/ss_5.png",
-    caption: "Clean non-intrusive integration that never blocks portal data",
+    caption:
+      "Comprehensive attendance analysis and safe bunk breakdown post-simulation",
   },
 ];
 
@@ -154,17 +157,6 @@ export function Hero() {
                 className="object-cover object-top transition-opacity duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1100px"
               />
-
-              {/* Floating Live Annotations (Responsive) */}
-              <div className="absolute top-4 right-4 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-panel text-xs font-semibold text-indigo-400 border border-indigo-500/30 shadow-lg backdrop-blur-md animate-in fade-in duration-300">
-                <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Simulation Engine Active</span>
-              </div>
-
-              <div className="absolute bottom-4 left-4 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-panel text-xs font-semibold text-emerald-400 border border-emerald-500/30 shadow-lg backdrop-blur-md animate-in fade-in duration-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>4 Safe Bunks Remaining</span>
-              </div>
             </div>
 
             {/* Caption bar */}
