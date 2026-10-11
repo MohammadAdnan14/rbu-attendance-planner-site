@@ -16,6 +16,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Updating extension counts
+
+Once a week, check the public Chrome Web Store user number and update it from the
+project directory:
+
+```bash
+npm run set-stat -- chrome 120
+```
+
+Replace `120` with the current count. Use `edge` or `firefox` only when those
+platforms are configured for manual counting. The command asks before lowering an
+existing number. Then open `/api/stats` on the live site and confirm the total changed.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

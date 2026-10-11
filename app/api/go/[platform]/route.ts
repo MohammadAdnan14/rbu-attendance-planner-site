@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { platforms } from "@/config/platforms";
+import { visitorFromRequest } from "@/lib/hash";
+import { countOnce } from "@/lib/stats";
 
 export async function GET(
   request: Request,
@@ -18,6 +20,12 @@ export async function GET(
     return NextResponse.redirect(new URL(`/${platform}`, request.url), 302);
   }
 
-  // Click tracking will be wired in Phase 6 with Redis
+  try {
+    await countOnce(`go:${platform}`, visitorFromRequest(request), [
+      `clicks:${platform}`,
+    ]);
+  } catch {
+    // Store navigation remains available if analytics is temporarily unavailable.
+  }
   return NextResponse.redirect(storeUrl, 302);
 }

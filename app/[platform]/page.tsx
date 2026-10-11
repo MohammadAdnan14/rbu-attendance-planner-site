@@ -19,6 +19,8 @@ import {
   AlertTriangle,
   HelpCircle,
   Laptop,
+  Star,
+  ArrowRight,
 } from "lucide-react";
 
 interface PlatformPageProps {
@@ -46,8 +48,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Install RBU Attendance Planner on ${info.name}`,
-    description: `Step-by-step instructions to install RBU Attendance Planner on ${info.name}.`,
+    title: `Download & Install RBU Attendance Planner for ${info.name}`,
+    description: `Official installation guide and download package for RBU Attendance Planner on ${info.name}.`,
   };
 }
 
@@ -67,169 +69,291 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
   const info = platforms[platformKey];
   const isSafari = platformKey === "safari";
 
+  const otherPlatforms = (
+    ["chrome", "edge", "firefox", "safari"] as PlatformKey[]
+  ).filter((p) => p !== platformKey);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
 
-      <main className="flex-1 py-12 sm:py-16">
+      <main className="flex-1 py-10 sm:py-16">
         <Container size="md">
-          {/* Back link */}
-          <div className="mb-8">
+          {/* Breadcrumb Back Link */}
+          <div className="mb-6">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[var(--text-muted)] hover:text-[var(--text-color)] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[var(--text-muted)] hover:text-[var(--text-color)] transition-colors group"
             >
-              <ArrowLeft className="w-4 h-4" />
-              Back to home
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              <span>Back to overview</span>
             </Link>
           </div>
 
-          {/* Header */}
-          <div className="mb-10 text-center sm:text-left">
-            <Badge variant="accent" size="sm" className="mb-3">
-              {info.name} Installation Guide
-            </Badge>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[var(--text-color)]">
-              Install RBU Attendance Planner on {info.name}
+          {/* Hero Header Card */}
+          <div className="relative rounded-3xl glass-panel p-6 sm:p-10 mb-10 overflow-hidden border border-[var(--border-color)] shadow-xl">
+            {/* Background ambient accent */}
+            <div
+              className="absolute -top-24 -right-24 w-72 h-72 bg-[var(--accent-color)]/10 blur-[80px] rounded-full pointer-events-none"
+              aria-hidden="true"
+            />
+
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <Badge variant="accent" size="sm">
+                Official {info.name} Distribution
+              </Badge>
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[var(--card-bg)] text-[var(--text-muted)] border border-[var(--border-color)]">
+                v1.0.0 Stable
+              </span>
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-medium">
+                Free & Open Source
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-color)]">
+              Get RBU Attendance Planner for {info.name}
             </h1>
-            <p className="mt-2 text-sm sm:text-base text-[var(--text-muted)]">
+
+            <p className="mt-3 text-sm sm:text-base text-[var(--text-muted)] max-w-xl leading-relaxed">
               {isSafari
-                ? "Manual installation guide for Apple Safari on macOS."
-                : `Add the extension to ${info.name} and view your attendance calculations in seconds.`}
+                ? "Direct unpacked distribution for Apple Safari 17+ on macOS Sonoma and Sequoia."
+                : `Add the attendance calculator to ${info.name} and view real-time safe bunk calculations on your college portal.`}
             </p>
+
+            {/* Main Action Bar */}
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              {isSafari ? (
+                <Button
+                  variant="primary"
+                  size="lg"
+                  href="/api/dl/safari"
+                  external
+                  className="shadow-lg shadow-[var(--accent-color)]/20 hover:shadow-[var(--accent-color)]/30 hover:scale-[1.02] transition-all"
+                >
+                  <Download className="w-5 h-5 mr-1" />
+                  Download safari-extension.zip
+                </Button>
+              ) : (
+                (() => {
+                  const storeInfo =
+                    platforms[platformKey as "chrome" | "edge" | "firefox"];
+                  const storeUrl = storeInfo.storeUrl;
+
+                  if (storeUrl && storeUrl !== "#") {
+                    return (
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        href={`/api/go/${platformKey}`}
+                        external
+                        className="shadow-lg shadow-[var(--accent-color)]/20 hover:shadow-[var(--accent-color)]/30 hover:scale-[1.02] transition-all"
+                      >
+                        <Download className="w-5 h-5 mr-1" />
+                        Install from {storeInfo.name} Store
+                        <ExternalLink className="w-4 h-4 ml-1 opacity-75" />
+                      </Button>
+                    );
+                  }
+
+                  return (
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                      <Button
+                        variant="secondary"
+                        size="lg"
+                        disabled
+                        className="cursor-not-allowed opacity-75"
+                      >
+                        Store Listing Review in Progress
+                      </Button>
+                      <span className="text-xs text-[var(--text-muted)]">
+                        Approval expected shortly
+                      </span>
+                    </div>
+                  );
+                })()
+              )}
+
+              <Button
+                variant="secondary"
+                size="lg"
+                href="https://github.com/MohammadAdnan14/Attendace-App"
+                external
+                className="hover:scale-[1.01] transition-all"
+              >
+                <span>View Source Code</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+              </Button>
+            </div>
+
+            {/* Chromium note if on Chrome */}
+            {"note" in info && info.note && (
+              <div className="mt-6 pt-5 border-t border-[var(--border-color)]/60 text-xs text-[var(--text-muted)] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)]" />
+                <span>{info.note}</span>
+              </div>
+            )}
           </div>
 
-          {/* Safari Specific Flow (Phase 5) */}
+          {/* SAFARI SPECIFIC DETAILED GUIDE */}
           {isSafari ? (
             <div className="space-y-8">
-              {/* Friendly Apple fee note */}
-              <Card className="border-indigo-500/20 bg-indigo-500/5">
-                <div className="flex gap-3">
-                  <Laptop className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
-                  <div className="text-sm space-y-2 text-[var(--text-color)]">
-                    <p className="font-semibold text-indigo-400">
-                      Why a manual install on Safari?
-                    </p>
-                    <p className="text-[var(--text-muted)] leading-relaxed text-xs sm:text-sm">
-                      Apple charges an annual developer fee to list on the Mac
-                      App Store. Because this is a free, non-commercial student
-                      project, Safari uses modern macOS unpacked loading
-                      instead. Modern Safari loads an unzipped extension folder
-                      directly, similar to Chromium&apos;s &ldquo;Load
-                      unpacked&rdquo;. Thank you for bearing with us!
+              {/* Friendly Note about Apple Fee */}
+              <Card className="border-indigo-500/25 bg-indigo-500/5 p-6">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center shrink-0">
+                    <Laptop className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <h3 className="text-sm sm:text-base font-bold text-[var(--text-color)]">
+                      Why a manual unpacked installation on Safari?
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                      Apple requires an annual developer fee to list extensions
+                      on the Mac App Store. Because this is a free,
+                      non-commercial student tool created by students, Safari
+                      uses macOS&apos;s official unpacked developer loader.
+                      Modern Safari loads the unzipped folder directly, just
+                      like Chromium&apos;s &ldquo;Load unpacked&rdquo;. No Xcode
+                      or Terminal commands needed!
                     </p>
                   </div>
                 </div>
               </Card>
 
-              {/* Download CTA */}
-              <Card className="text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4 p-6">
-                <div>
-                  <h2 className="text-lg font-bold text-[var(--text-color)]">
-                    Download Extension Package
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1">
-                    Direct zip archive containing manifest.json, content.js, and
-                    styles.css.
-                  </p>
-                </div>
-                <Button
-                  variant="primary"
-                  size="lg"
-                  href="/api/dl/safari"
-                  className="w-full sm:w-auto"
-                >
-                  <Download className="w-4 h-4" />
-                  Download safari-extension.zip
-                </Button>
-              </Card>
-
-              {/* Requirements Block */}
-              <Card>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
+              {/* System Requirements Checklist */}
+              <Card className="p-6">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-3">
                   System Requirements
                 </h3>
-                <ul className="space-y-2 text-xs sm:text-sm text-[var(--text-color)]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {siteConfig.safariRequirements.map((req, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2 text-xs sm:text-sm text-[var(--text-color)]"
+                    >
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{req}</span>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </Card>
 
-              {/* Safari Quit Callout Warning */}
-              <div className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 flex items-start gap-3">
-                <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <p className="text-xs sm:text-sm text-amber-200/90 leading-relaxed">
-                  <strong>Important:</strong> Safari forgets temporary
-                  extensions when you quit it completely. Hide Safari with{" "}
-                  <kbd className="px-1.5 py-0.5 rounded bg-black/40 border border-amber-500/30 font-mono text-[11px]">
+              {/* CRITICAL LIGHT-MODE SAFE ALERT */}
+              <div className="p-5 rounded-2xl border border-amber-300 dark:border-amber-500/30 bg-amber-50/90 dark:bg-amber-500/10 shadow-sm flex items-start gap-3.5">
+                <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                <div className="text-xs sm:text-sm leading-relaxed text-amber-950 dark:text-amber-200">
+                  <strong className="font-semibold block mb-0.5">
+                    Important Safari Behavior:
+                  </strong>
+                  Apple automatically resets temporary extensions when you
+                  completely quit Safari (Cmd + Q). To keep the planner active,
+                  simply hide Safari using{" "}
+                  <kbd className="px-1.5 py-0.5 rounded bg-amber-200/60 dark:bg-black/60 border border-amber-300 dark:border-amber-500/40 font-mono text-[11px] font-bold text-amber-950 dark:text-amber-200">
                     Cmd + H
                   </kbd>{" "}
-                  instead of quitting (Cmd + Q), or repeat steps 3 and 4 next
-                  time you open Safari.
-                </p>
+                  instead of quitting, or re-add the folder when you next launch
+                  Safari.
+                </div>
               </div>
 
-              {/* Five Installation Steps */}
+              {/* Stepper Timeline for Safari */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[var(--text-color)]">
+                <h2 className="text-xl font-bold text-[var(--text-color)]">
                   Step-by-Step Installation
-                </h3>
+                </h2>
 
-                {[
-                  {
-                    step: 1,
-                    title: "Download and unzip",
-                    desc: "Download safari-extension.zip and extract it. Open the folder and verify that manifest.json, content.js, and styles.css sit directly inside.",
-                  },
-                  {
-                    step: 2,
-                    title: "Enable Developer Features",
-                    desc: "In Safari, open Settings (Cmd + ,) > Advanced. Check 'Show features for web developers'. A Developer tab will appear in Settings.",
-                  },
-                  {
-                    step: 3,
-                    title: "Allow Unsigned Extensions",
-                    desc: "Go to Settings > Developer. Check 'Allow unsigned extensions' and authenticate with Touch ID or your Mac password.",
-                  },
-                  {
-                    step: 4,
-                    title: "Add Temporary Extension",
-                    desc: "Click 'Add Temporary Extension...', navigate to the unzipped folder that directly contains manifest.json (not the zip, not Downloads or Applications), and click Select.",
-                  },
-                  {
-                    step: 5,
-                    title: "Activate on the college portal",
-                    desc: "In Settings > Extensions, ensure RBU Attendance Planner is ticked. Open https://rcoem.in/studentCourseFileNew.htm, click the extension icon next to the address bar, choose 'Always Allow on This Website', then refresh (Cmd + R).",
-                  },
-                ].map((s) => (
-                  <Card key={s.step} className="p-5 flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
-                      {s.step}
-                    </div>
-                    <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
-                        {s.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                        {s.desc}
-                      </p>
-                    </div>
-                  </Card>
-                ))}
+                <div className="space-y-3">
+                  {[
+                    {
+                      num: 1,
+                      title: "Download and unzip package",
+                      desc: "Click the download button above to get safari-extension.zip. Extract it and verify that manifest.json, content.js, and styles.css sit directly inside the folder.",
+                    },
+                    {
+                      num: 2,
+                      title: "Enable Developer Features in Safari",
+                      desc: "Open Safari > Settings (Cmd + ,) > Advanced tab. Check 'Show features for web developers'. A Developer tab will now appear in your Settings.",
+                    },
+                    {
+                      num: 3,
+                      title: "Allow Unsigned Extensions",
+                      desc: "Go to Settings > Developer tab. Check 'Allow unsigned extensions' and authenticate with Touch ID or your macOS administrator password.",
+                    },
+                    {
+                      num: 4,
+                      title: "Add Temporary Extension folder",
+                      desc: "Click 'Add Temporary Extension...', browse to the unzipped folder that directly contains manifest.json (not the zip file or Downloads parent), and click Select.",
+                    },
+                    {
+                      num: 5,
+                      title: "Activate on the college portal",
+                      desc: "In Settings > Extensions, ensure RBU Attendance Planner is ticked. Open https://rcoem.in/studentCourseFileNew.htm, click the extension puzzle piece icon next to the address bar, select 'Always Allow on This Website', and refresh (Cmd + R).",
+                    },
+                    {
+                      num: 6,
+                      title: "Loved our product? Drop your review!",
+                      desc: "Help support fellow RBU students! Drop a star or feedback on our GitHub repository at https://github.com/MohammadAdnan14/Attendace-App.",
+                      isReview: true,
+                    },
+                  ].map((s) => (
+                    <Card
+                      key={s.num}
+                      className={`p-5 flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 ${
+                        s.isReview
+                          ? "border-emerald-500/30 bg-emerald-500/5"
+                          : ""
+                      }`}
+                    >
+                      <div
+                        className={`w-9 h-9 rounded-xl font-bold text-sm flex items-center justify-center shrink-0 ${
+                          s.isReview
+                            ? "bg-emerald-500/15 text-emerald-500"
+                            : "bg-[var(--accent-color)]/10 text-[var(--accent-color)]"
+                        }`}
+                      >
+                        {s.isReview ? (
+                          <Star className="w-4 h-4 fill-emerald-500" />
+                        ) : (
+                          s.num
+                        )}
+                      </div>
+
+                      <div className="space-y-1">
+                        <h3 className="text-sm sm:text-base font-semibold text-[var(--text-color)]">
+                          {s.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                          {s.isReview ? (
+                            <>
+                              Loved our product? Drop a star or review{" "}
+                              <a
+                                href="https://github.com/MohammadAdnan14/Attendace-App"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-emerald-500 underline underline-offset-2 hover:brightness-110"
+                              >
+                                here on GitHub
+                              </a>{" "}
+                              to help fellow RBU students!
+                            </>
+                          ) : (
+                            s.desc
+                          )}
+                        </p>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
               </div>
 
-              {/* Troubleshooting Cases */}
+              {/* Troubleshooting Accordion Cards */}
               <div className="space-y-4 pt-4 border-t border-[var(--border-color)]">
                 <h3 className="text-lg font-bold text-[var(--text-color)] flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-[var(--accent-color)]" />
-                  Troubleshooting
+                  Common Troubleshooting Cases
                 </h3>
 
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 gap-3">
                   <Card className="p-4">
                     <h4 className="text-xs sm:text-sm font-semibold text-[var(--text-color)] mb-1">
                       &ldquo;Extension Not Supported: &apos;Applications&apos;
@@ -237,8 +361,8 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                     </h4>
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                       You selected a parent folder. Click &ldquo;Add Temporary
-                      Extension...&rdquo; again and select the folder that
-                      directly contains manifest.json.
+                      Extension...&rdquo; again and choose the specific
+                      extracted folder containing manifest.json directly.
                     </p>
                   </Card>
 
@@ -249,8 +373,8 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                       Apple resets temporary extensions on quit. Re-tick
                       &ldquo;Allow unsigned extensions&rdquo; in Settings &gt;
-                      Developer, then add the folder again. Use Cmd+H instead of
-                      Cmd+Q to avoid resetting.
+                      Developer, then re-add the folder. Use Cmd+H instead of
+                      Cmd+Q to avoid resets.
                     </p>
                   </Card>
 
@@ -261,22 +385,23 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                       Open Settings &gt; Extensions, select RBU Attendance
                       Planner, set rcoem.in to Allow, then perform a hard
-                      refresh with Option+Cmd+R.
+                      refresh with Option + Cmd + R.
                     </p>
                   </Card>
                 </div>
               </div>
 
-              {/* Stuck Installing Block */}
+              {/* Stuck Installing AI Prompt Helper */}
               <Card className="p-6 border-[var(--accent-color)]/30 bg-[var(--accent-color)]/5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <h4 className="text-base font-bold text-[var(--text-color)]">
-                      Stuck installing?
+                      Stuck installing on Safari?
                     </h4>
                     <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1">
-                      Copy our troubleshooting prompt into your AI assistant,
-                      mention where you are stuck, and attach a screenshot.
+                      Copy our tailored troubleshooting prompt into ChatGPT,
+                      Claude, or your favorite AI assistant, add where you got
+                      stuck, and attach a screenshot.
                     </p>
                   </div>
                   <CopyPromptButton className="shrink-0" />
@@ -284,123 +409,122 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
               </Card>
             </div>
           ) : (
-            /* Chrome, Edge, and Firefox Flow */
-            (() => {
-              const storeInfo =
-                platforms[platformKey as "chrome" | "edge" | "firefox"];
-              const storeUrl = storeInfo.storeUrl;
-              const note = "note" in storeInfo ? storeInfo.note : null;
+            /* CHROME, EDGE, AND FIREFOX FLOW */
+            <div className="space-y-8">
+              {/* Stepper Timeline */}
+              <div className="space-y-4">
+                <h2 className="text-xl font-bold text-[var(--text-color)]">
+                  Installation Steps
+                </h2>
 
-              return (
-                <div className="space-y-8">
-                  {/* Install Button & Store CTA */}
-                  <Card className="text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 p-6">
+                <div className="grid grid-cols-1 gap-3.5">
+                  <Card className="p-5 flex items-start gap-4 hover:border-[var(--accent-color)]/30 transition-all">
+                    <div className="w-9 h-9 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
+                      1
+                    </div>
                     <div>
-                      <h2 className="text-xl font-bold text-[var(--text-color)]">
-                        Get RBU Attendance Planner
-                      </h2>
-                      <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1">
-                        Official extension for {storeInfo.name}. One-click
-                        installation.
+                      <h3 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
+                        Install from the store
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                        Click the primary installation button above to open the
+                        official store listing and click &ldquo;Add to{" "}
+                        {info.name}&rdquo;.
                       </p>
                     </div>
-
-                    {storeUrl && storeUrl !== "#" ? (
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        href={`/api/go/${platformKey}`}
-                        className="w-full sm:w-auto"
-                      >
-                        <Download className="w-4 h-4" />
-                        Install from {storeInfo.name} Store
-                        <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-                      </Button>
-                    ) : (
-                      <div className="flex flex-col items-center sm:items-end">
-                        <Button
-                          variant="secondary"
-                          size="lg"
-                          disabled
-                          className="w-full sm:w-auto cursor-not-allowed opacity-75"
-                        >
-                          Store Listing Review in Progress
-                        </Button>
-                        <span className="text-[11px] text-[var(--text-muted)] mt-1.5">
-                          Check back shortly or build from GitHub source
-                        </span>
-                      </div>
-                    )}
                   </Card>
 
-                  {/* Chromium Note on Chrome page */}
-                  {note && (
-                    <div className="p-4 rounded-xl glass-panel text-xs sm:text-sm text-[var(--text-muted)] flex items-center gap-2">
-                      <span className="font-medium text-[var(--text-color)]">
-                        Chromium compatibility:
-                      </span>
-                      <span>{note}</span>
+                  <Card className="p-5 flex items-start gap-4 hover:border-[var(--accent-color)]/30 transition-all">
+                    <div className="w-9 h-9 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
+                      2
                     </div>
-                  )}
-
-                  {/* Three Steps from PRD 7.2 */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-bold text-[var(--text-color)]">
-                      3 Simple Steps
-                    </h3>
-
-                    <div className="grid grid-cols-1 gap-4">
-                      <Card className="p-5 flex items-start gap-4">
-                        <div className="w-8 h-8 rounded-lg bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
-                          1
-                        </div>
-                        <div>
-                          <h4 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
-                            Install from the store
-                          </h4>
-                          <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                            Click the install button above to open the official
-                            store listing and add the extension to your browser.
-                          </p>
-                        </div>
-                      </Card>
-
-                      <Card className="p-5 flex items-start gap-4">
-                        <div className="w-8 h-8 rounded-lg bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
-                          2
-                        </div>
-                        <div>
-                          <h4 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
-                            Open rcoem.in and log in
-                          </h4>
-                          <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                            Navigate to the official Ramdeobaba University
-                            student portal and log in with your credentials.
-                          </p>
-                        </div>
-                      </Card>
-
-                      <Card className="p-5 flex items-start gap-4">
-                        <div className="w-8 h-8 rounded-lg bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
-                          3
-                        </div>
-                        <div>
-                          <h4 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
-                            Go to attendance
-                          </h4>
-                          <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                            Open your attendance page. The RBU Attendance
-                            Planner dashboard appears automatically right over
-                            your course table.
-                          </p>
-                        </div>
-                      </Card>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
+                        Open rcoem.in and log in
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                        Visit the official Ramdeobaba University student portal
+                        and sign in with your student credentials.
+                      </p>
                     </div>
-                  </div>
+                  </Card>
+
+                  <Card className="p-5 flex items-start gap-4 hover:border-[var(--accent-color)]/30 transition-all">
+                    <div className="w-9 h-9 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] font-bold text-sm flex items-center justify-center shrink-0">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
+                        Open attendance page
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                        Navigate to your course attendance view. The RBU
+                        Attendance Planner dashboard automatically loads and
+                        displays safe bunk margins and advice.
+                      </p>
+                    </div>
+                  </Card>
+
+                  {/* Review prompt step */}
+                  <Card className="p-5 flex items-start gap-4 border-emerald-500/30 bg-emerald-500/5 hover:border-emerald-500/50 transition-all">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-500 font-bold text-sm flex items-center justify-center shrink-0">
+                      <Star className="w-4 h-4 fill-emerald-500" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-semibold text-[var(--text-color)] mb-1">
+                        Loved our product? Drop your review!
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                        Loved our product? Drop your review{" "}
+                        {(() => {
+                          const storeInfo =
+                            platforms[
+                              platformKey as "chrome" | "edge" | "firefox"
+                            ];
+                          const storeUrl = storeInfo.storeUrl;
+                          const targetUrl =
+                            storeUrl && storeUrl !== "#"
+                              ? storeUrl
+                              : "https://github.com/MohammadAdnan14/Attendace-App";
+
+                          return (
+                            <a
+                              href={targetUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-emerald-500 underline underline-offset-2 hover:brightness-110"
+                            >
+                              here
+                            </a>
+                          );
+                        })()}{" "}
+                        to support fellow RBU students!
+                      </p>
+                    </div>
+                  </Card>
                 </div>
-              );
-            })()
+              </div>
+            </div>
           )}
+
+          {/* Bottom Ecosystem Switcher */}
+          <div className="mt-14 pt-8 border-t border-[var(--border-color)] text-center">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
+              Also available for your other browsers
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {otherPlatforms.map((p) => (
+                <Link
+                  key={p}
+                  href={`/${p}`}
+                  className="px-4 py-2 rounded-xl text-xs font-medium glass-panel text-[var(--text-color)] hover:text-[var(--accent-color)] hover:bg-[var(--card-hover)] hover:border-[var(--accent-color)]/30 transition-all flex items-center gap-1.5"
+                >
+                  <span>{platforms[p].name}</span>
+                  <ArrowRight className="w-3 h-3 text-[var(--text-muted)]" />
+                </Link>
+              ))}
+            </div>
+          </div>
         </Container>
       </main>
 

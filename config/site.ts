@@ -3,14 +3,13 @@ export const siteConfig = {
   description:
     "The intelligent, real-time attendance calculator and simulation dashboard for Ramdeobaba University students.",
   url: "https://rbu-attendance-planner.vercel.app",
-  headline: "Stop doing attendance math on a calculator.",
-  subline: "Know how many classes you can skip safely, or need to attend.",
+  headline: "Stop Doing Attendance Math on a Calculator",
+  subline: "Know How Many Classes You Can Skip Safely, Or Need To Attend",
   badge: "Built for Ramdeobaba University students",
   stats: {
     showPlaceholder: true,
     placeholderTotal: "100+ Downloads",
-    footnote:
-      "Chrome, Edge and Firefox counts are active users from each store.",
+    footnote: "Chrome, Edge, Firefox and Safari count.",
   },
   safariRequirements: [
     "Apple Safari 17.0 or higher",

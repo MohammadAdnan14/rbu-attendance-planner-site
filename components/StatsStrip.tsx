@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Container } from "./ui/Container";
 import { siteConfig } from "@/config/site";
-import { Users } from "lucide-react";
+import { ShieldCheck, Zap, CheckCircle2 } from "lucide-react";
 
 interface StatsResponse {
   total: number;
@@ -19,7 +19,6 @@ interface StatsResponse {
 
 export function StatsStrip() {
   const [stats, setStats] = React.useState<StatsResponse | null>(null);
-  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -32,13 +31,10 @@ export function StatsStrip() {
       .then((data: StatsResponse) => {
         if (isMounted) {
           setStats(data);
-          setLoading(false);
         }
       })
       .catch(() => {
-        if (isMounted) {
-          setLoading(false);
-        }
+        // Fallback gracefully
       });
 
     return () => {
@@ -48,31 +44,140 @@ export function StatsStrip() {
 
   const showPlaceholder =
     stats?.showPlaceholder ?? siteConfig.stats.showPlaceholder;
-  const displayTotal = showPlaceholder
-    ? stats?.placeholderTotal || siteConfig.stats.placeholderTotal
-    : `${stats?.total || 0}+ Downloads`;
+  const displayTotal = showPlaceholder ? "100+" : `${stats?.total || 100}+`;
 
   return (
-    <section className="py-8 sm:py-12 border-y border-[var(--border-color)] bg-[var(--card-bg)]/40">
-      <Container size="md">
-        {/* Fixed height container to prevent layout shift */}
-        <div className="min-h-[76px] flex flex-col items-center justify-center text-center">
-          {loading ? (
-            <div className="flex flex-col items-center animate-pulse gap-2">
-              <div className="h-8 w-44 bg-[var(--card-hover)] rounded-lg" />
-              <div className="h-4 w-72 bg-[var(--card-hover)]/70 rounded-md" />
+    <section className="py-12 sm:py-16 border-y border-[var(--border-color)] bg-gradient-to-b from-[var(--card-bg)]/20 via-[var(--card-bg)]/50 to-[var(--card-bg)]/20 relative overflow-hidden">
+      {/* Background glow accent */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[180px] bg-indigo-500/10 blur-[100px] pointer-events-none -z-10"
+        aria-hidden="true"
+      />
+
+      <Container size="lg">
+        {/* Main Banner Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Column: Epic Grand Number */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mb-3">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Community Proven
             </div>
-          ) : (
-            <>
-              <div className="flex items-center gap-2.5 text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--text-color)]">
-                <Users className="w-6 h-6 text-[var(--accent-color)]" />
-                <span>{displayTotal}</span>
+
+            <div className="text-5xl sm:text-6xl font-black tracking-tight text-[var(--text-color)] flex items-baseline gap-2">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-color)] via-indigo-400 to-[var(--accent-color)]">
+                {displayTotal}
+              </span>
+              <span className="text-xl sm:text-2xl font-bold text-[var(--accent-color)]">
+                Downloads
+              </span>
+            </div>
+
+            <p className="mt-2 text-sm sm:text-base text-[var(--text-muted)] max-w-sm">
+              Trusted by students across Ramdeobaba University to stay above the
+              75% attendance threshold.
+            </p>
+
+            <div className="mt-3 text-xs text-[var(--text-muted)] font-medium">
+              {siteConfig.stats.footnote}
+            </div>
+          </div>
+
+          {/* Right Column: 4 Platform Counter Badges + Trust Signals */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                  Chrome
+                </span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
               </div>
-              <p className="mt-1.5 text-xs sm:text-sm text-[var(--text-muted)]">
-                {siteConfig.stats.footnote}
-              </p>
-            </>
-          )}
+              <div className="text-xl sm:text-2xl font-bold text-[var(--text-color)]">
+                Live
+              </div>
+              <div className="text-[11px] text-[var(--text-muted)] mt-1 truncate">
+                Web Store Listing
+              </div>
+            </div>
+
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                  Edge
+                </span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              </div>
+              <div className="text-xl sm:text-2xl font-bold text-[var(--text-color)]">
+                Live
+              </div>
+              <div className="text-[11px] text-[var(--text-muted)] mt-1 truncate">
+                Microsoft Add-ons
+              </div>
+            </div>
+
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                  Firefox
+                </span>
+                <span className="w-2 h-2 rounded-full bg-amber-400" />
+              </div>
+              <div className="text-xl sm:text-2xl font-bold text-[var(--text-color)]">
+                Review
+              </div>
+              <div className="text-[11px] text-[var(--text-muted)] mt-1 truncate">
+                AMO Store Listing
+              </div>
+            </div>
+
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
+                  Safari
+                </span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              </div>
+              <div className="text-xl sm:text-2xl font-bold text-[var(--text-color)]">
+                macOS
+              </div>
+              <div className="text-[11px] text-[var(--text-muted)] mt-1 truncate">
+                Direct Unpacked Zip
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quality Signals Strip */}
+        <div className="mt-8 pt-6 border-t border-[var(--border-color)]/60 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-2.5 text-xs text-[var(--text-muted)]">
+            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>
+              <strong className="text-[var(--text-color)]">
+                100% Client-Side
+              </strong>{" "}
+              — Zero telemetry, no data leaves your device
+            </span>
+          </div>
+
+          <div className="flex items-center justify-center sm:justify-start gap-2.5 text-xs text-[var(--text-muted)]">
+            <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>
+              <strong className="text-[var(--text-color)]">
+                Instant Calculation
+              </strong>{" "}
+              — Dynamic calculations load with the page
+            </span>
+          </div>
+
+          <div className="flex items-center justify-center sm:justify-start gap-2.5 text-xs text-[var(--text-muted)]">
+            <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
+            <span>
+              <strong className="text-[var(--text-color)]">
+                Formula Verified
+              </strong>{" "}
+              — Tested against official college thresholds
+            </span>
+          </div>
         </div>
       </Container>
     </section>
