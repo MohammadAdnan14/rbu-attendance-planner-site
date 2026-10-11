@@ -86,6 +86,32 @@ export function generateStaticParams() {
   ];
 }
 
+const platformSeoDetails: Record<
+  PlatformKey,
+  { title: string; description: string }
+> = {
+  chrome: {
+    title: "Download for Google Chrome & Chromium Browsers",
+    description:
+      "Install RBU Attendance Planner on Google Chrome, Brave, Arc, Opera, and Vivaldi. Real-time safe bunk calculations directly on your student portal.",
+  },
+  edge: {
+    title: "Download for Microsoft Edge",
+    description:
+      "Install RBU Attendance Planner from Microsoft Edge Add-ons. Real-time safe bunk calculations directly on your student portal.",
+  },
+  firefox: {
+    title: "Download for Mozilla Firefox",
+    description:
+      "Install RBU Attendance Planner from Firefox Add-ons (AMO). Real-time safe bunk calculations and attendance simulation on Firefox desktop.",
+  },
+  safari: {
+    title: "Download & Install for Apple Safari on macOS",
+    description:
+      "Download and install the native unpacked RBU Attendance Planner extension for Apple Safari on macOS Sonoma and Sequoia.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: PlatformPageProps): Promise<Metadata> {
@@ -97,9 +123,29 @@ export async function generateMetadata({
     return { title: "Platform Not Found" };
   }
 
-  return {
+  const seo = platformSeoDetails[validKey] || {
     title: `Download & Install RBU Attendance Planner for ${info.name}`,
     description: `Official installation guide and download package for RBU Attendance Planner on ${info.name}.`,
+  };
+
+  const canonicalUrl = `${siteConfig.url}/${validKey}`;
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${seo.title} | ${siteConfig.name}`,
+      description: seo.description,
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${seo.title} | ${siteConfig.name}`,
+      description: seo.description,
+    },
   };
 }
 

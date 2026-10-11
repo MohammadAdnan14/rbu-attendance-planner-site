@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -11,8 +12,78 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — Real-Time Attendance Calculator & Simulator`,
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — Real-Time Safe Bunk Calculator & Simulator`,
+    template: `%s | ${siteConfig.name}`,
+  },
   description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [
+    "RBU attendance planner",
+    "Ramdeobaba University",
+    "RCOEM attendance calculator",
+    "safe bunk calculator",
+    "attendance simulator",
+    "college attendance tracker",
+    "browser extension",
+    "attendance percentage",
+  ],
+  authors: [
+    {
+      name: "Mohammad Adnan",
+      url: "https://github.com/MohammadAdnan14",
+    },
+  ],
+  creator: "Mohammad Adnan",
+  publisher: "Mohammad Adnan",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} — Real-Time Safe Bunk Calculator & Simulator`,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} — Real-Time Safe Bunk Calculator & Simulator`,
+    description: siteConfig.description,
+    creator: "@0xAdnanDalal",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: siteConfig.name,
+  operatingSystem: "Windows, macOS, Linux, ChromeOS",
+  applicationCategory: "EducationalApplication",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+  },
+  description: siteConfig.description,
+  url: siteConfig.url,
+  softwareVersion: "1.0.0",
 };
 
 export default function RootLayout({
@@ -27,7 +98,23 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col font-sans bg-[var(--bg-color)] text-[var(--text-color)]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
         <ThemeProvider>{children}</ThemeProvider>
+        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({
+              token: process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN,
+            })}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

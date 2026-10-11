@@ -2,7 +2,9 @@ export const siteConfig = {
   name: "RBU Attendance Planner",
   description:
     "The intelligent, real-time attendance calculator and simulation dashboard for Ramdeobaba University students.",
-  url: "https://rbu-attendance-planner.vercel.app",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://rbu-attendance-planner-site.vercel.app",
   headline: "Stop Doing Attendance Math on a Calculator",
   subline: "Know How Many Classes You Can Skip Safely, Or Need To Attend",
   badge: "Built for Ramdeobaba University students",
