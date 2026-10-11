@@ -9,14 +9,6 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  async rewrites() {
-    return [
-      {
-        source: "/_design",
-        destination: "/design",
-      },
-    ];
-  },
   async headers() {
     return [
       {
