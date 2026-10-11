@@ -67,9 +67,9 @@ export function PlatformButtons({ className = "" }: { className?: string }) {
           <Link
             key={platform.id}
             href={platform.href}
-            className={`group relative flex flex-col justify-between p-4 rounded-2xl glass-panel transition-all duration-200 hover:-translate-y-1 hover:border-[var(--accent-color)]/40 hover:bg-[var(--card-hover)] ${
+            className={`group relative flex flex-col justify-between p-4 rounded-2xl glass-panel bg-white/95 dark:bg-[var(--card-bg)] border border-slate-200/90 dark:border-[var(--border-color)] transition-all duration-200 hover:-translate-y-1 hover:border-indigo-500/60 dark:hover:border-indigo-400/60 hover:bg-[var(--card-hover)] hover:shadow-xl hover:shadow-indigo-500/25 dark:hover:shadow-indigo-500/35 ${
               isDetected
-                ? "ring-2 ring-[var(--accent-color)] border-transparent shadow-lg shadow-[var(--accent-color)]/10"
+                ? "ring-2 ring-[var(--accent-color)] border-transparent shadow-lg shadow-indigo-500/20"
                 : ""
             }`}
           >

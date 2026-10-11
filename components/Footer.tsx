@@ -7,10 +7,10 @@ import { Heart, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-slate-200/80 dark:border-[var(--border-color)] bg-slate-100/70 dark:bg-[#0b0e14]/90 pt-14 pb-10">
+    <footer className="mt-auto border-t border-slate-300 dark:border-[var(--border-color)] bg-slate-200/90 dark:bg-[#0b0e14]/90 pt-14 pb-10 transition-colors">
       <Container size="lg">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-12 border-b border-slate-200/80 dark:border-[var(--border-color)]/60">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-12 border-b border-slate-300/80 dark:border-[var(--border-color)]/60">
           {/* Brand & Mission Column */}
           <div className="md:col-span-5 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
