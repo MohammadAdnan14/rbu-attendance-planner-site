@@ -16,7 +16,7 @@ export async function GET(
   const storePlatform = platform as "chrome" | "edge" | "firefox";
   const storeUrl = platforms[storePlatform].storeUrl;
 
-  if (!storeUrl || storeUrl === "#") {
+  if (!storeUrl || (storeUrl as string) === "#") {
     return NextResponse.redirect(new URL(`/${platform}`, request.url), 302);
   }
 

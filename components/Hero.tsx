@@ -67,18 +67,26 @@ export function Hero() {
             {siteConfig.badge}
           </Badge>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-color)] leading-[1.12]">
-            {siteConfig.headline}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-color)] leading-[1.15]">
+            Stop Doing{" "}
+            <span className="relative inline-block group cursor-default transition-transform duration-200 hover:scale-[1.03]">
+              <span className="relative z-10 text-[var(--text-color)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                Attendance
+              </span>
+              <span className="absolute bottom-1 left-0 w-full h-[3px] sm:h-[4px] bg-indigo-500/30 group-hover:bg-indigo-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-left" />
+            </span>{" "}
+            <br className="hidden sm:inline" />
+            Math on a Calculator
           </h1>
 
           <p className="mt-6 text-base sm:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
             Know How Many Classes You Can{" "}
-            <span className="relative inline-block font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-300 dark:to-teal-300 underline decoration-emerald-500/60 decoration-2 underline-offset-4 hover:brightness-110 transition-all">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-emerald-800 bg-emerald-500/12 border border-emerald-600/25 dark:text-emerald-300 dark:bg-emerald-950/50 dark:border-emerald-500/30 font-semibold cursor-default transition-all duration-200 hover:scale-105 hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:shadow-xs">
               Skip Safely
             </span>
             , Or{" "}
-            <span className="relative inline-block font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-600 dark:from-sky-300 dark:to-indigo-300 underline decoration-sky-500/60 decoration-2 underline-offset-4 hover:brightness-110 transition-all">
-              Need To Attend
+            <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-indigo-800 bg-indigo-500/12 border border-indigo-600/25 dark:text-indigo-300 dark:bg-indigo-950/50 dark:border-indigo-500/30 font-semibold cursor-default transition-all duration-200 hover:scale-105 hover:bg-indigo-500/20 hover:border-indigo-500/50 hover:shadow-xs">
+              Need to Attend
             </span>
           </p>
         </div>

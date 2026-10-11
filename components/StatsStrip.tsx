@@ -59,16 +59,16 @@ export function StatsStrip() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Epic Grand Number */}
           <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300/80 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60 mb-3">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Community Proven
             </div>
 
-            <div className="text-5xl sm:text-6xl font-black tracking-tight text-[var(--text-color)] flex items-baseline gap-2">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-color)] via-indigo-400 to-[var(--accent-color)]">
+            <div className="text-5xl sm:text-6xl font-black tracking-tight flex items-baseline gap-2">
+              <span className="text-slate-900 dark:text-white tracking-tight">
                 {displayTotal}
               </span>
-              <span className="text-xl sm:text-2xl font-bold text-[var(--accent-color)]">
+              <span className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400">
                 Downloads
               </span>
             </div>
@@ -78,7 +78,7 @@ export function StatsStrip() {
               75% attendance threshold.
             </p>
 
-            <div className="mt-3 text-xs text-[var(--text-muted)] font-medium">
+            <div className="mt-3 text-xs text-slate-500 dark:text-slate-400 font-medium">
               {siteConfig.stats.footnote}
             </div>
           </div>
@@ -120,10 +120,10 @@ export function StatsStrip() {
                 <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
                   Firefox
                 </span>
-                <span className="w-2 h-2 rounded-full bg-amber-400" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
               </div>
               <div className="text-xl sm:text-2xl font-bold text-[var(--text-color)]">
-                Review
+                Live
               </div>
               <div className="text-[11px] text-[var(--text-muted)] mt-1 truncate">
                 AMO Store Listing

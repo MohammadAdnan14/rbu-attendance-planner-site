@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "./ui/Container";
 import { ColdBrew } from "./ColdBrew";
-import { Heart } from "lucide-react";
+import { Heart, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-[var(--border-color)] bg-[var(--card-bg)]/40 pt-14 pb-10">
+    <footer className="mt-auto border-t border-slate-200/80 dark:border-[var(--border-color)] bg-slate-100/70 dark:bg-[#0b0e14]/90 pt-14 pb-10">
       <Container size="lg">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-12 border-b border-[var(--border-color)]/60">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-12 border-b border-slate-200/80 dark:border-[var(--border-color)]/60">
           {/* Brand & Mission Column */}
           <div className="md:col-span-5 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
@@ -36,6 +36,17 @@ export function Footer() {
               <span>Crafted with</span>
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               <span>by students, for students.</span>
+            </div>
+
+            <div className="pt-1 text-xs text-[var(--text-muted)] flex items-center gap-1.5">
+              <Mail className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+              <span>Direct Contact:</span>
+              <a
+                href="mailto:0xadnandalal@gmail.com"
+                className="font-medium text-[var(--text-color)] hover:text-indigo-600 dark:hover:text-indigo-400 underline decoration-slate-300 dark:decoration-slate-700 underline-offset-2 transition-colors"
+              >
+                0xadnandalal@gmail.com
+              </a>
             </div>
           </div>
 

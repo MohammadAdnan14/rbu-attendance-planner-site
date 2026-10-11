@@ -139,7 +139,7 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                     platforms[platformKey as "chrome" | "edge" | "firefox"];
                   const storeUrl = storeInfo.storeUrl;
 
-                  if (storeUrl && storeUrl !== "#") {
+                  if (storeUrl && (storeUrl as string) !== "#") {
                     return (
                       <Button
                         variant="primary"
@@ -483,7 +483,7 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                             ];
                           const storeUrl = storeInfo.storeUrl;
                           const targetUrl =
-                            storeUrl && storeUrl !== "#"
+                            storeUrl && (storeUrl as string) !== "#"
                               ? storeUrl
                               : "https://github.com/MohammadAdnan14/Attendace-App";
 

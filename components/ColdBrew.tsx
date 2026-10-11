@@ -9,7 +9,7 @@ export function ColdBrew() {
 
   return (
     <div className="relative">
-      <div className="p-4 rounded-2xl glass-panel border border-[var(--border-color)] bg-[var(--card-bg)]/60">
+      <div className="p-5 rounded-2xl bg-white dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-md dark:shadow-none hover:shadow-lg transition-all">
         <div className="flex items-center gap-2 mb-1.5">
           <Coffee className="w-4 h-4 text-amber-500" />
           <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-color)]">
@@ -24,12 +24,12 @@ export function ColdBrew() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-[var(--card-hover)] hover:bg-[var(--accent-color)] hover:text-white text-[var(--text-color)] border border-[var(--border-color)] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-color)]"
+          className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-amber-50 hover:bg-amber-500 hover:text-white text-amber-900 border border-amber-300/80 dark:bg-amber-950/40 dark:hover:bg-amber-500 dark:hover:text-white dark:text-amber-300 dark:border-amber-600/40 transition-all cursor-pointer shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
           aria-expanded={isOpen}
           aria-controls="cold-brew-modal"
         >
           <QrCode className="w-3.5 h-3.5" />
-          <span>{isOpen ? "Hide QR Code" : "Buy me a cold brew (UPI)"}</span>
+          <span>{isOpen ? "Hide QR Code" : "Buy me a Cold Brew"}</span>
         </button>
       </div>
 
@@ -37,7 +37,7 @@ export function ColdBrew() {
       {isOpen && (
         <div
           id="cold-brew-modal"
-          className="mt-3 p-4 rounded-2xl glass-panel border border-[var(--border-color)] flex flex-col items-center text-center animate-in fade-in zoom-in-95 duration-200 shadow-2xl bg-[var(--header-bg)]"
+          className="mt-3 p-4 rounded-2xl bg-white dark:bg-[var(--header-bg)] border border-slate-200 dark:border-[var(--border-color)] flex flex-col items-center text-center animate-in fade-in zoom-in-95 duration-200 shadow-xl"
         >
           <div className="w-full flex items-center justify-between mb-2">
             <span className="text-[11px] font-semibold text-[var(--text-color)]">
