@@ -55,7 +55,13 @@ export const metadata: Metadata = {
     creator: "@0xAdnanDalal",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/icon16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon128.png", sizes: "128x128", type: "image/png" },
+    ],
+    apple: [{ url: "/icon128.png", sizes: "128x128", type: "image/png" }],
+    shortcut: "/favicon.ico",
   },
   robots: {
     index: true,
