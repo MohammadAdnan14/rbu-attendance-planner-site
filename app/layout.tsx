@@ -105,12 +105,15 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>{children}</ThemeProvider>
-        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
+        {(process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN ||
+          "f85846d8170d4bf2891bdf4f843263c3") && (
           <Script
             defer
             src="https://static.cloudflareinsights.com/beacon.min.js"
             data-cf-beacon={JSON.stringify({
-              token: process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN,
+              token:
+                process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN ||
+                "f85846d8170d4bf2891bdf4f843263c3",
             })}
             strategy="afterInteractive"
           />
