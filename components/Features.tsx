@@ -67,10 +67,10 @@ export function Features() {
               <Card
                 key={idx}
                 hoverable
-                className="flex flex-col justify-between group"
+                className="flex flex-col justify-between group transition-all duration-300 hover:border-[var(--accent-color)]/35 hover:shadow-lg hover:shadow-[var(--accent-color)]/5"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center mb-4 transition-transform group-hover:scale-105">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--accent-color)] group-hover:text-white shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-semibold text-[var(--text-color)] mb-2">

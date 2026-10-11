@@ -54,7 +54,11 @@ export function Faq() {
             return (
               <div
                 key={idx}
-                className="glass-panel rounded-2xl overflow-hidden transition-all duration-200"
+                className={`glass-panel rounded-2xl overflow-hidden transition-all duration-200 hover:border-[var(--accent-color)]/30 ${
+                  isOpen
+                    ? "border-l-4 border-l-[var(--accent-color)] shadow-md"
+                    : ""
+                }`}
               >
                 <button
                   type="button"

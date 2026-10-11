@@ -41,7 +41,7 @@ export function HowItWorks() {
 
         {/* Three Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <Card className="relative flex flex-col items-start">
+          <Card hoverable className="relative flex flex-col items-start">
             <div className="w-10 h-10 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center font-bold text-base mb-4">
               1
             </div>
@@ -55,7 +55,7 @@ export function HowItWorks() {
             </p>
           </Card>
 
-          <Card className="relative flex flex-col items-start">
+          <Card hoverable className="relative flex flex-col items-start">
             <div className="w-10 h-10 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center font-bold text-base mb-4">
               2
             </div>
@@ -69,7 +69,7 @@ export function HowItWorks() {
             </p>
           </Card>
 
-          <Card className="relative flex flex-col items-start">
+          <Card hoverable className="relative flex flex-col items-start">
             <div className="w-10 h-10 rounded-xl bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center font-bold text-base mb-4">
               3
             </div>
