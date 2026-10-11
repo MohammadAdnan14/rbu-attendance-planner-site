@@ -67,46 +67,19 @@ export function Hero() {
             {siteConfig.badge}
           </Badge>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-color)] leading-[1.15]">
-            Stop Doing{" "}
-            <span className="group/att relative inline-block cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
-              <span className="relative z-10 text-[var(--text-color)] transition-colors duration-200 group-hover/att:text-indigo-600 dark:group-hover/att:text-indigo-400">
-                Attendance
-              </span>
-              {/* Subtle brand wash backdrop */}
-              <span
-                aria-hidden="true"
-                className="absolute -inset-x-2 -inset-y-0.5 rounded-xl bg-indigo-500/0 group-hover/att:bg-indigo-500/10 dark:group-hover/att:bg-indigo-500/15 transition-all duration-200 pointer-events-none"
-              />
-              {/* Crisp indigo underline */}
-              <span className="absolute -bottom-1 left-0 w-full h-[3px] sm:h-[4px] bg-indigo-600 dark:bg-indigo-400 rounded-full scale-x-0 group-hover/att:scale-x-100 transition-transform duration-200 origin-left" />
-            </span>{" "}
-            <br className="hidden sm:inline" />
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-color)] leading-[1.12]">
+            Stop Doing Attendance <br className="hidden sm:inline" />
             Math on a Calculator
           </h1>
 
           <p className="mt-6 text-base sm:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
             Know how many classes you can{" "}
-            <span className="group/skip relative inline-block font-bold text-emerald-600 dark:text-emerald-400 cursor-pointer transition-all duration-200 hover:-translate-y-0.5">
-              <span className="relative z-10 transition-colors duration-200 group-hover/skip:text-emerald-700 dark:group-hover/skip:text-emerald-300">
-                Skip Safely
-              </span>
-              <span
-                aria-hidden="true"
-                className="absolute -inset-x-1.5 -inset-y-0.5 rounded-md bg-emerald-500/0 group-hover/skip:bg-emerald-500/10 dark:group-hover/skip:bg-emerald-500/15 transition-all duration-200 pointer-events-none"
-              />
-              <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-emerald-600 dark:bg-emerald-400 rounded-full scale-x-0 group-hover/skip:scale-x-100 transition-transform duration-200 origin-left" />
+            <span className="font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200">
+              Skip Safely
             </span>
             , or{" "}
-            <span className="group/attend relative inline-block font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer transition-all duration-200 hover:-translate-y-0.5">
-              <span className="relative z-10 transition-colors duration-200 group-hover/attend:text-indigo-700 dark:group-hover/attend:text-indigo-300">
-                Need to Attend
-              </span>
-              <span
-                aria-hidden="true"
-                className="absolute -inset-x-1.5 -inset-y-0.5 rounded-md bg-indigo-500/0 group-hover/attend:bg-indigo-500/10 dark:group-hover/attend:bg-indigo-500/15 transition-all duration-200 pointer-events-none"
-              />
-              <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-indigo-600 dark:bg-indigo-400 rounded-full scale-x-0 group-hover/attend:scale-x-100 transition-transform duration-200 origin-left" />
+            <span className="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-200">
+              Need to Attend
             </span>
           </p>
         </div>

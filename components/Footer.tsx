@@ -88,16 +88,6 @@ export function Footer() {
                   Apple Safari (macOS)
                 </Link>
               </li>
-              <li>
-                <a
-                  href="https://github.com/MohammadAdnan14/Attendace-App"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[var(--accent-color)] transition-colors"
-                >
-                  GitHub Repository & Issues
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -117,7 +107,7 @@ export function Footer() {
               height={16}
               className="opacity-70"
             />
-            <span>RBU Attendance Planner — MIT Open Source License</span>
+            <span>RBU Attendance Planner</span>
           </div>
           <span>
             Independent student project. Not officially affiliated with RBU.

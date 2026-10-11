@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Is it free?",
-    a: "Yes, completely free and open source under the MIT License. If it helps you plan your semester, you can optionally support maintenance by buying the creator a cold brew in the footer.",
+    a: "Yes, 100% free with zero ads. If it helps you plan your semester, you can optionally support maintenance by buying the creator a cold brew in the footer.",
   },
   {
     q: "Does it work on phones?",

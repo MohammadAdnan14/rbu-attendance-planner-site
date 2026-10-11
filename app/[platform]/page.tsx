@@ -21,7 +21,57 @@ import {
   Laptop,
   Star,
   ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
+
+const platformMeta: Record<
+  PlatformKey,
+  {
+    fullName: string;
+    tagline: string;
+    ecosystem: string;
+    badge: string;
+    badgeColor: string;
+    gradient: string;
+  }
+> = {
+  chrome: {
+    fullName: "Google Chrome",
+    tagline: "Web Store Listing",
+    ecosystem: "Also runs seamlessly on Brave, Arc, Opera & Vivaldi.",
+    badge: "Available Now",
+    badgeColor:
+      "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    gradient: "from-blue-500/10 via-amber-500/5 to-emerald-500/10",
+  },
+  edge: {
+    fullName: "Microsoft Edge",
+    tagline: "Microsoft Edge Add-ons",
+    ecosystem: "One-click install from the Microsoft Edge store.",
+    badge: "Available Now",
+    badgeColor:
+      "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    gradient: "from-blue-500/10 to-teal-500/10",
+  },
+  firefox: {
+    fullName: "Mozilla Firefox",
+    tagline: "Firefox Add-ons (AMO)",
+    ecosystem: "Official AMO store listing for Firefox desktop.",
+    badge: "Available Now",
+    badgeColor:
+      "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    gradient: "from-orange-500/10 to-pink-500/10",
+  },
+  safari: {
+    fullName: "Apple Safari",
+    tagline: "macOS Sonoma & Sequoia",
+    ecosystem: "Native unpacked developer folder for macOS 14+.",
+    badge: "macOS 14+",
+    badgeColor:
+      "text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+    gradient: "from-indigo-500/10 to-blue-500/10",
+  },
+};
 
 interface PlatformPageProps {
   params: Promise<{ platform: string }>;
@@ -91,7 +141,7 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
           </div>
 
           {/* Hero Header Card */}
-          <div className="relative rounded-3xl glass-panel p-6 sm:p-10 mb-10 overflow-hidden border border-[var(--border-color)] shadow-xl">
+          <div className="relative rounded-3xl glass-panel p-6 sm:p-10 mb-10 overflow-hidden bg-white/95 dark:bg-[var(--card-bg)] border border-slate-200/90 dark:border-[var(--border-color)] shadow-md dark:shadow-xl">
             {/* Background ambient accent */}
             <div
               className="absolute -top-24 -right-24 w-72 h-72 bg-[var(--accent-color)]/10 blur-[80px] rounded-full pointer-events-none"
@@ -102,11 +152,11 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
               <Badge variant="accent" size="sm">
                 Official {info.name} Distribution
               </Badge>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[var(--card-bg)] text-[var(--text-muted)] border border-[var(--border-color)]">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[var(--card-bg)] text-[var(--text-muted)] border border-slate-200/80 dark:border-[var(--border-color)]">
                 v1.0.0 Stable
               </span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-medium">
-                Free & Open Source
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
+                100% Free
               </span>
             </div>
 
@@ -172,17 +222,6 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                   );
                 })()
               )}
-
-              <Button
-                variant="secondary"
-                size="lg"
-                href="https://github.com/MohammadAdnan14/Attendace-App"
-                external
-                className="hover:scale-[1.01] transition-all"
-              >
-                <span>View Source Code</span>
-                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-              </Button>
             </div>
 
             {/* Chromium note if on Chrome */}
@@ -292,7 +331,7 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                     {
                       num: 6,
                       title: "Loved our product? Drop your review!",
-                      desc: "Help support fellow RBU students! Drop a star or feedback on our GitHub repository at https://github.com/MohammadAdnan14/Attendace-App.",
+                      desc: "Help support fellow RBU students! Reach out or send your feedback to 0xadnandalal@gmail.com.",
                       isReview: true,
                     },
                   ].map((s) => (
@@ -325,16 +364,14 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                         <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
                           {s.isReview ? (
                             <>
-                              Loved our product? Drop a star or review{" "}
+                              Loved our product? Send your thoughts or feedback{" "}
                               <a
-                                href="https://github.com/MohammadAdnan14/Attendace-App"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-semibold text-emerald-500 underline underline-offset-2 hover:brightness-110"
+                                href="mailto:0xadnandalal@gmail.com"
+                                className="font-semibold text-emerald-600 dark:text-emerald-400 underline underline-offset-2 hover:brightness-110"
                               >
-                                here on GitHub
+                                via email
                               </a>{" "}
-                              to help fellow RBU students!
+                              to help support fellow RBU students!
                             </>
                           ) : (
                             s.desc
@@ -485,16 +522,26 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                           const targetUrl =
                             storeUrl && (storeUrl as string) !== "#"
                               ? storeUrl
-                              : "https://github.com/MohammadAdnan14/Attendace-App";
+                              : "mailto:0xadnandalal@gmail.com";
 
                           return (
                             <a
                               href={targetUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-semibold text-emerald-500 underline underline-offset-2 hover:brightness-110"
+                              target={
+                                targetUrl.startsWith("mailto:")
+                                  ? undefined
+                                  : "_blank"
+                              }
+                              rel={
+                                targetUrl.startsWith("mailto:")
+                                  ? undefined
+                                  : "noopener noreferrer"
+                              }
+                              className="font-semibold text-emerald-600 dark:text-emerald-400 underline underline-offset-2 hover:brightness-110"
                             >
-                              here
+                              {targetUrl.startsWith("mailto:")
+                                ? "via email"
+                                : "on the store"}
                             </a>
                           );
                         })()}{" "}
@@ -508,21 +555,66 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
           )}
 
           {/* Bottom Ecosystem Switcher */}
-          <div className="mt-14 pt-8 border-t border-[var(--border-color)] text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
-              Also available for your other browsers
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {otherPlatforms.map((p) => (
-                <Link
-                  key={p}
-                  href={`/${p}`}
-                  className="px-4 py-2 rounded-xl text-xs font-medium glass-panel text-[var(--text-color)] hover:text-[var(--accent-color)] hover:bg-[var(--card-hover)] hover:border-[var(--accent-color)]/30 transition-all flex items-center gap-1.5"
-                >
-                  <span>{platforms[p].name}</span>
-                  <ArrowRight className="w-3 h-3 text-[var(--text-muted)]" />
-                </Link>
-              ))}
+          <div className="mt-16 pt-10 border-t border-[var(--border-color)]">
+            <div className="text-center max-w-xl mx-auto mb-8">
+              <span className="text-xs font-bold uppercase tracking-widest text-[var(--accent-color)] mb-1.5 block">
+                Cross-Platform Ecosystem
+              </span>
+              <h2 className="text-xl sm:text-2xl font-black text-[var(--text-color)] tracking-tight">
+                Also available for your other browsers
+              </h2>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1.5">
+                Switch guides or install RBU Attendance Planner across all your
+                devices and preferred browser workflows.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {otherPlatforms.map((p) => {
+                const meta = platformMeta[p];
+                return (
+                  <Link
+                    key={p}
+                    href={`/${p}`}
+                    className="group relative rounded-2xl p-5 bg-white/95 dark:bg-[var(--card-bg)]/90 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none hover:shadow-xl hover:border-[var(--accent-color)]/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  >
+                    {/* Subtle ambient hover tint */}
+                    <div
+                      aria-hidden="true"
+                      className={`absolute inset-0 bg-gradient-to-br ${meta.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                    />
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span
+                          className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${meta.badgeColor} flex items-center gap-1.5`}
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          {meta.badge}
+                        </span>
+                        <ArrowUpRight className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--accent-color)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      </div>
+
+                      <h3 className="text-base sm:text-lg font-bold text-[var(--text-color)] group-hover:text-[var(--accent-color)] transition-colors">
+                        {meta.fullName}
+                      </h3>
+
+                      <p className="text-xs font-medium text-[var(--text-muted)] mt-0.5">
+                        {meta.tagline}
+                      </p>
+
+                      <p className="text-xs text-[var(--text-muted)]/80 mt-2 line-clamp-2 leading-relaxed">
+                        {meta.ecosystem}
+                      </p>
+                    </div>
+
+                    <div className="relative z-10 mt-5 pt-3 border-t border-[var(--border-color)]/60 flex items-center justify-between text-xs font-semibold text-[var(--accent-color)]">
+                      <span>Get for {platforms[p].name}</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </Container>

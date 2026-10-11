@@ -66,7 +66,7 @@ export function Features() {
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Bento Card 1: Interactive What-If Simulator (Spans 2 columns on desktop) */}
-          <div className="lg:col-span-2 rounded-2xl glass-panel p-6 sm:p-7 border border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
+          <div className="lg:col-span-2 rounded-2xl glass-panel p-6 sm:p-7 border border-slate-200/90 dark:border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2.5">
@@ -86,7 +86,7 @@ export function Features() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-[var(--text-muted)] hover:text-[var(--text-color)] hover:bg-[var(--card-hover)] border border-[var(--border-color)] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg text-[var(--text-muted)] hover:text-[var(--text-color)] hover:bg-[var(--card-hover)] border border-slate-200/90 dark:border-[var(--border-color)] transition-colors cursor-pointer"
                   title="Reset simulator"
                 >
                   <RotateCcw className="w-3 h-3" />
@@ -101,7 +101,7 @@ export function Features() {
               </p>
 
               {/* Live Interactive Course Card Preview */}
-              <div className="rounded-xl border border-[var(--border-color)] bg-slate-50/90 dark:bg-black/30 p-4 sm:p-5">
+              <div className="rounded-xl border border-slate-200/90 dark:border-[var(--border-color)] bg-slate-50/90 dark:bg-black/30 p-4 sm:p-5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
                     <span className="text-[11px] font-semibold tracking-wider uppercase text-[var(--text-muted)]">
@@ -211,7 +211,7 @@ export function Features() {
           </div>
 
           {/* Bento Card 2: Shortage Recovery Goals */}
-          <div className="rounded-2xl glass-panel p-6 border border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
+          <div className="rounded-2xl glass-panel p-6 border border-slate-200/90 dark:border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
                 <Calculator className="w-5 h-5" />
@@ -264,7 +264,7 @@ export function Features() {
           </div>
 
           {/* Bento Card 3: Safe-to-Skip Count */}
-          <div className="rounded-2xl glass-panel p-6 border border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
+          <div className="rounded-2xl glass-panel p-6 border border-slate-200/90 dark:border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
                 <CheckCircle2 className="w-5 h-5" />
@@ -300,7 +300,7 @@ export function Features() {
           </div>
 
           {/* Bento Card 4: Draggable & Minimizable Window */}
-          <div className="rounded-2xl glass-panel p-6 border border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
+          <div className="rounded-2xl glass-panel p-6 border border-slate-200/90 dark:border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
                 <Move className="w-5 h-5" />
@@ -314,7 +314,7 @@ export function Features() {
               </p>
 
               {/* Mini Header Pill Preview */}
-              <div className="p-3 rounded-xl border border-[var(--border-color)] bg-slate-50 dark:bg-black/40 flex items-center justify-between">
+              <div className="p-3 rounded-xl border border-slate-200/90 dark:border-[var(--border-color)] bg-slate-50 dark:bg-black/40 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono text-[var(--text-muted)]">
                     ⋮⋮
@@ -334,7 +334,7 @@ export function Features() {
           </div>
 
           {/* Bento Card 5: Privacy Shield */}
-          <div className="rounded-2xl glass-panel p-6 border border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
+          <div className="rounded-2xl glass-panel p-6 border border-slate-200/90 dark:border-[var(--border-color)] bg-white/90 dark:bg-[var(--card-bg)]/80 shadow-md dark:shadow-none hover:border-[var(--accent-color)]/40 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
                 <ShieldCheck className="w-5 h-5" />

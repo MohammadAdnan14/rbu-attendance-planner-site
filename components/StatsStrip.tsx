@@ -99,7 +99,7 @@ export function StatsStrip() {
 
           {/* Right Column: 4 Platform Counter Badges + Trust Signals */}
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
                   Chrome
@@ -114,7 +114,7 @@ export function StatsStrip() {
               </div>
             </div>
 
-            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
                   Edge
@@ -129,7 +129,7 @@ export function StatsStrip() {
               </div>
             </div>
 
-            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
                   Firefox
@@ -144,7 +144,7 @@ export function StatsStrip() {
               </div>
             </div>
 
-            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
+            <div className="glass-panel p-4 rounded-2xl flex flex-col justify-between bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none hover:border-[var(--accent-color)]/30 hover:-translate-y-0.5 transition-all">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
                   Safari
