@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Clean Slate Light Theme */
+  --bg-color: #f1f5f9;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --card-bg: #ffffff;
+  --card-hover: rgba(255, 255, 255, 0.95);
+  --border-color: rgba(15, 23, 42, 0.08);
+  --text-color: #0f172a;
+  --text-muted: #64748b;
+  --accent-color: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+
+  --badge-attend-bg: rgba(2, 132, 199, 0.1);
+  --badge-attend-text: #0284c7;
+  --badge-attend-border: rgba(2, 132, 199, 0.25);
+
+  --badge-leave-bg: rgba(13, 148, 136, 0.1);
+  --badge-leave-text: #0d9488;
+  --badge-leave-border: rgba(13, 148, 136, 0.25);
+
+  --badge-safe-bg: rgba(16, 185, 129, 0.1);
+  --badge-safe-text: #059669;
+  --badge-safe-border: rgba(16, 185, 129, 0.25);
+
+  --badge-warning-bg: rgba(245, 158, 11, 0.1);
+  --badge-warning-text: #d97706;
+  --badge-warning-border: rgba(245, 158, 11, 0.25);
+}
+
+.dark {
+  /* Obsidian Glass Dark Theme */
+  --bg-color: #0d1117;
+  --header-bg: rgba(22, 27, 34, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-hover: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-color: #f0f6fc;
+  --text-muted: #8b949e;
+  --accent-color: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+
+  --badge-attend-bg: rgba(56, 189, 248, 0.15);
+  --badge-attend-text: #38bdf8;
+  --badge-attend-border: rgba(56, 189, 248, 0.3);
+
+  --badge-leave-bg: rgba(45, 212, 191, 0.15);
+  --badge-leave-text: #2dd4bf;
+  --badge-leave-border: rgba(45, 212, 191, 0.3);
+
+  --badge-safe-bg: rgba(52, 211, 153, 0.15);
+  --badge-safe-text: #34d399;
+  --badge-safe-border: rgba(52, 211, 153, 0.3);
+
+  --badge-warning-bg: rgba(251, 191, 36, 0.15);
+  --badge-warning-text: #fbbf24;
+  --badge-warning-border: rgba(251, 191, 36, 0.3);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-page: var(--bg-color);
+  --color-header: var(--header-bg);
+  --color-surface: var(--card-bg);
+  --color-surface-hover: var(--card-hover);
+  --color-border: var(--border-color);
+  --color-foreground: var(--text-color);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent-color);
+  --color-accent-hover: var(--accent-hover);
+  --font-sans:
+    var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family:
+    var(--font-inter),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  min-height: 100vh;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.glass-header {
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
 }
