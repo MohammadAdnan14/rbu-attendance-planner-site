@@ -18,18 +18,20 @@ import {
 } from "lucide-react";
 
 export function Features() {
-  // Interactive mini-simulator state for the showcase card
-  const [attended, setAttended] = React.useState(32);
-  const [total, setTotal] = React.useState(38);
+  // Interactive mini-simulator state for the showcase card (Operating Systems, 60% subject threshold)
+  const [attended, setAttended] = React.useState(20);
+  const [total, setTotal] = React.useState(28);
   const [medicalLeaves, setMedicalLeaves] = React.useState(0);
 
   const percentage = total > 0 ? (attended / total) * 100 : 0;
-  const isSafe = percentage >= 75;
+  const isSafe = percentage >= 60;
+  // Safe bunks to stay at or above 60% subject cutoff:
   const safeBunks = isSafe
-    ? Math.max(0, Math.floor((attended - 0.75 * total) / 0.75))
+    ? Math.max(0, Math.floor((attended - 0.6 * total) / 0.6))
     : 0;
+  // Classes to attend to reach 60% if in shortage:
   const neededToAttend = !isSafe
-    ? Math.max(0, Math.ceil((0.75 * total - attended) / 0.25))
+    ? Math.max(0, Math.ceil((0.6 * total - attended) / 0.4))
     : 0;
 
   const handleAttend = () => {
@@ -47,8 +49,8 @@ export function Features() {
   };
 
   const handleReset = () => {
-    setAttended(32);
-    setTotal(38);
+    setAttended(20);
+    setTotal(28);
     setMedicalLeaves(0);
   };
 
@@ -94,8 +96,8 @@ export function Features() {
 
               <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-5 leading-relaxed">
                 Simulate upcoming classes before stepping out of the lecture
-                hall. Test what happens to your percentage if you attend, claim
-                a medical leave, or take an unexcused absence.
+                hall. Test what happens to your percentage against the 60%
+                subject cutoff if you attend, claim a leave, or miss.
               </p>
 
               {/* Live Interactive Course Card Preview */}
@@ -106,7 +108,7 @@ export function Features() {
                       Subject Simulation Preview
                     </span>
                     <h4 className="text-sm sm:text-base font-bold text-[var(--text-color)]">
-                      Distributed Systems & Cloud Computing
+                      Operating Systems
                     </h4>
                   </div>
 
@@ -150,11 +152,11 @@ export function Features() {
                       width: `${Math.min(100, Math.max(0, percentage))}%`,
                     }}
                   />
-                  {/* 75% Threshold Marker Line */}
+                  {/* 60% Subject Threshold Marker Line */}
                   <div
                     className="absolute top-0 bottom-0 w-0.5 bg-slate-900/60 dark:bg-white/80 z-10"
-                    style={{ left: "75%" }}
-                    title="75% Target Threshold"
+                    style={{ left: "60%" }}
+                    title="60% Subject Threshold"
                   />
                 </div>
 
@@ -171,7 +173,7 @@ export function Features() {
                     {medicalLeaves > 0 && ` (${medicalLeaves} Leaves)`}
                   </span>
                   <span className="font-semibold text-slate-700 dark:text-slate-300">
-                    75% Threshold Goal
+                    60% Subject Cutoff
                   </span>
                 </div>
 
@@ -218,18 +220,19 @@ export function Features() {
                 Actionable Recovery Goals
               </h3>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-5">
-                If your attendance drops below 75%, stop worrying. The planner
-                prescribes the exact combination of classes to recover.
+                If a subject drops below RBU&apos;s mandatory 60% cutoff, stop
+                worrying. The planner prescribes the exact combination of
+                classes to recover.
               </p>
 
               {/* Shortage Course Pill Preview */}
               <div className="rounded-xl border border-amber-300/60 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/20 p-3.5 space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-[var(--text-color)]">
-                    EC302: Signal Processing
+                    Data Structures
                   </span>
                   <span className="text-xs font-extrabold text-amber-700 dark:text-amber-400">
-                    71.4%
+                    54.5%
                   </span>
                 </div>
 
@@ -239,7 +242,7 @@ export function Features() {
                       Recovery Option 1
                     </span>
                     <span className="font-bold text-indigo-700 dark:text-indigo-400">
-                      Attend next 3 classes
+                      Attend next 3 classes (hits 60.0%)
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-[11px] px-2.5 py-1.5 rounded-lg bg-white/80 dark:bg-black/40 border border-slate-200 dark:border-white/10">
@@ -247,7 +250,7 @@ export function Features() {
                       Recovery Option 2
                     </span>
                     <span className="font-bold text-emerald-700 dark:text-emerald-400">
-                      Claim 2 Medical Leaves
+                      Claim 2 Medical Leaves (hits 63.6%)
                     </span>
                   </div>
                 </div>
@@ -271,25 +274,25 @@ export function Features() {
               </h3>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-4">
                 Know with mathematical certainty how many lectures you can miss
-                without breaching the 75% boundary.
+                in any course without breaching the 60% subject cutoff.
               </p>
 
               {/* Safe Margin Widget */}
               <div className="p-3.5 rounded-xl border border-emerald-300/60 dark:border-emerald-500/30 bg-emerald-50/50 dark:bg-emerald-950/20 flex items-center justify-between">
                 <div>
                   <span className="text-[11px] text-[var(--text-muted)] block">
-                    Remaining Safe Buffer
+                    Linear Algebra Buffer
                   </span>
                   <span className="text-xl font-black text-emerald-700 dark:text-emerald-400">
-                    +4 Classes Safe
+                    +5 Classes Safe
                   </span>
                 </div>
                 <div className="text-right">
                   <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold block">
-                    Stays at 75.8%
+                    Stays above 60.0%
                   </span>
                   <span className="text-[10px] text-[var(--text-muted)]">
-                    Threshold protected
+                    60% Cutoff Protected
                   </span>
                 </div>
               </div>

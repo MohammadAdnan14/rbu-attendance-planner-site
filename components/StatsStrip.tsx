@@ -58,24 +58,38 @@ export function StatsStrip() {
         {/* Main Banner Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Epic Grand Number */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300/80 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60 mb-3">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left relative">
+            {/* Ambient backlight glow */}
+            <div
+              className="absolute -top-6 -left-6 w-52 h-52 bg-indigo-500/15 dark:bg-indigo-500/30 rounded-full blur-3xl pointer-events-none -z-10"
+              aria-hidden="true"
+            />
+
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300/80 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60 mb-4 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Community Proven
+              Official Student Milestone
             </div>
 
-            <div className="text-5xl sm:text-6xl font-black tracking-tight flex items-baseline gap-2">
-              <span className="text-slate-900 dark:text-white tracking-tight">
-                {displayTotal}
-              </span>
-              <span className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                Downloads
-              </span>
+            <div className="relative group/counter cursor-default mb-2">
+              <div className="flex items-baseline gap-3">
+                {/* Grand Milestone Figure */}
+                <span className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-none bg-gradient-to-b from-slate-950 via-slate-800 to-indigo-900 dark:from-white dark:via-slate-100 dark:to-indigo-300 bg-clip-text text-transparent drop-shadow-sm select-none transition-transform duration-300 group-hover/counter:scale-[1.02]">
+                  {displayTotal}
+                </span>
+                <div className="flex flex-col text-left">
+                  <span className="text-2xl sm:text-3xl font-black tracking-tight text-indigo-600 dark:text-indigo-400 leading-tight">
+                    Downloads
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                    Across RBU Campus
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <p className="mt-2 text-sm sm:text-base text-[var(--text-muted)] max-w-sm">
+            <p className="mt-2 text-sm sm:text-base text-[var(--text-muted)] max-w-sm leading-relaxed">
               Trusted by students across Ramdeobaba University to stay above the
-              75% attendance threshold.
+              attendance threshold with zero manual math.
             </p>
 
             <div className="mt-3 text-xs text-slate-500 dark:text-slate-400 font-medium">

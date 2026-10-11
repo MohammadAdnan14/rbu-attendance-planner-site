@@ -69,24 +69,33 @@ export function Hero() {
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-color)] leading-[1.15]">
             Stop Doing{" "}
-            <span className="relative inline-block group cursor-default transition-transform duration-200 hover:scale-[1.03]">
-              <span className="relative z-10 text-[var(--text-color)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <span className="relative inline-block group cursor-pointer transition-transform duration-300 hover:scale-[1.04]">
+              {/* Luminous aura behind Attendance on hover */}
+              <span
+                aria-hidden="true"
+                className="absolute -inset-x-3 -inset-y-1 rounded-2xl bg-gradient-to-r from-indigo-500/25 via-purple-500/25 to-pink-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              />
+              {/* Dynamic shimmering gradient text */}
+              <span className="relative z-10 text-[var(--text-color)] transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-violet-600 group-hover:to-pink-600 dark:group-hover:from-indigo-300 dark:group-hover:via-purple-300 dark:group-hover:to-pink-300 group-hover:bg-clip-text group-hover:text-transparent">
                 Attendance
               </span>
-              <span className="absolute bottom-1 left-0 w-full h-[3px] sm:h-[4px] bg-indigo-500/30 group-hover:bg-indigo-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-left" />
+              {/* Sleek expanding gradient underline */}
+              <span className="absolute -bottom-1 left-0 w-full h-[3px] sm:h-[4px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-xs shadow-indigo-500/50" />
             </span>{" "}
             <br className="hidden sm:inline" />
             Math on a Calculator
           </h1>
 
           <p className="mt-6 text-base sm:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
-            Know How Many Classes You Can{" "}
-            <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-emerald-800 bg-emerald-500/12 border border-emerald-600/25 dark:text-emerald-300 dark:bg-emerald-950/50 dark:border-emerald-500/30 font-semibold cursor-default transition-all duration-200 hover:scale-105 hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:shadow-xs">
+            Know how many classes you can{" "}
+            <span className="group/skip relative inline-block font-bold text-emerald-600 dark:text-emerald-400 cursor-pointer transition-colors duration-200 hover:text-emerald-500 dark:hover:text-emerald-300">
               Skip Safely
+              <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full scale-x-0 group-hover/skip:scale-x-100 transition-transform duration-300 origin-left" />
             </span>
-            , Or{" "}
-            <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-indigo-800 bg-indigo-500/12 border border-indigo-600/25 dark:text-indigo-300 dark:bg-indigo-950/50 dark:border-indigo-500/30 font-semibold cursor-default transition-all duration-200 hover:scale-105 hover:bg-indigo-500/20 hover:border-indigo-500/50 hover:shadow-xs">
+            , or{" "}
+            <span className="group/attend relative inline-block font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer transition-colors duration-200 hover:text-indigo-500 dark:hover:text-indigo-300">
               Need to Attend
+              <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full scale-x-0 group-hover/attend:scale-x-100 transition-transform duration-300 origin-left" />
             </span>
           </p>
         </div>

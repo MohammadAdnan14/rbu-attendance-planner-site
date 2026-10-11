@@ -25,9 +25,14 @@ export function HowItWorks() {
 
         {/* Dual Benchmark Threshold Cards */}
         <div className="max-w-3xl mx-auto mb-14 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none flex items-center gap-4 transition-all hover:border-indigo-500/40">
-            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 flex items-center justify-center font-black text-xl shrink-0 shadow-xs">
-              75%
+          <div className="p-5 rounded-2xl bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none flex items-center gap-5 transition-all hover:border-indigo-500/40">
+            <div className="px-4 py-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800/60 shrink-0 text-center min-w-[82px]">
+              <span className="text-2xl font-black text-indigo-700 dark:text-indigo-300 tracking-tight block">
+                75%
+              </span>
+              <span className="text-[10px] uppercase font-extrabold tracking-wider text-indigo-600 dark:text-indigo-400 block mt-0.5">
+                Overall
+              </span>
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -44,9 +49,14 @@ export function HowItWorks() {
             </div>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none flex items-center gap-4 transition-all hover:border-emerald-500/40">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 flex items-center justify-center font-black text-xl shrink-0 shadow-xs">
-              60%
+          <div className="p-5 rounded-2xl bg-white/90 dark:bg-[var(--card-bg)]/80 border border-slate-200/90 dark:border-[var(--border-color)] shadow-sm dark:shadow-none flex items-center gap-5 transition-all hover:border-emerald-500/40">
+            <div className="px-4 py-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/60 shrink-0 text-center min-w-[82px]">
+              <span className="text-2xl font-black text-emerald-800 dark:text-emerald-300 tracking-tight block">
+                60%
+              </span>
+              <span className="text-[10px] uppercase font-extrabold tracking-wider text-emerald-600 dark:text-emerald-400 block mt-0.5">
+                Subject
+              </span>
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -54,11 +64,11 @@ export function HowItWorks() {
                   Subject Target
                 </Badge>
                 <span className="text-xs font-bold text-[var(--text-color)]">
-                  Per-Course Minimum
+                  Per-Course Cutoff
                 </span>
               </div>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                Flags any individual subject falling below 60% eligibility.
+                Flags any individual subject falling below 60% exam eligibility.
               </p>
             </div>
           </div>
