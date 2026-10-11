@@ -64,3 +64,14 @@ export async function countOnce(kind: string, hash: string, keys: string[]) {
   if (keys[1]) await redis.incrby(keys[1], 1);
   return true;
 }
+
+/** Updates a platform stat record in Redis with a fresh timestamp. */
+export async function updateStat(
+  platform: StatPlatform,
+  count: number
+): Promise<StatRecord> {
+  const redis = getRedis();
+  const value: StatRecord = { count, updatedAt: new Date().toISOString() };
+  await redis.set(`stats:${platform}`, value);
+  return value;
+}

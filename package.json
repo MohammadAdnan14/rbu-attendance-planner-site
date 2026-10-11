@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "set-stat": "tsx --env-file-if-exists=.env.local scripts/set-stat.ts"
+    "set-stat": "tsx --env-file-if-exists=.env.local scripts/set-stat.ts",
+    "test-refresh": "tsx --env-file-if-exists=.env.local scripts/test-refresh.ts"
   },
   "dependencies": {
     "@upstash/redis": "^1.39.0",
