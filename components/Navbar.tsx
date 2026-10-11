@@ -1,19 +1,33 @@
+"use client";
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "./ui/Container";
 import { Button } from "./ui/Button";
 import { ThemeToggle } from "./ThemeToggle";
 import { Download } from "lucide-react";
 
 export function Navbar() {
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full glass-header">
       <Container size="lg">
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-2.5 transition-opacity hover:opacity-90"
+            onClick={handleLogoClick}
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-90 cursor-pointer select-none"
+            title="Scroll to top"
           >
             <Image
               src="/icon48.png"

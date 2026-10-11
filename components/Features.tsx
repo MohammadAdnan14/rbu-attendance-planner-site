@@ -220,16 +220,16 @@ export function Features() {
                 Actionable Recovery Goals
               </h3>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-5">
-                If a subject drops below RBU&apos;s mandatory 60% cutoff, stop
-                worrying. The planner prescribes the exact combination of
-                classes to recover.
+                If your attendance in Operating Systems drops below RBU&apos;s
+                mandatory 60% cutoff, the planner prescribes the exact
+                combination to recover.
               </p>
 
               {/* Shortage Course Pill Preview */}
               <div className="rounded-xl border border-amber-300/60 dark:border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/20 p-3.5 space-y-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-[var(--text-color)]">
-                    Data Structures
+                    Operating Systems
                   </span>
                   <span className="text-xs font-extrabold text-amber-700 dark:text-amber-400">
                     54.5%
@@ -274,14 +274,14 @@ export function Features() {
               </h3>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-4">
                 Know with mathematical certainty how many lectures you can miss
-                in any course without breaching the 60% subject cutoff.
+                in Operating Systems without breaching the 60% cutoff.
               </p>
 
               {/* Safe Margin Widget */}
               <div className="p-3.5 rounded-xl border border-emerald-300/60 dark:border-emerald-500/30 bg-emerald-50/50 dark:bg-emerald-950/20 flex items-center justify-between">
                 <div>
                   <span className="text-[11px] text-[var(--text-muted)] block">
-                    Linear Algebra Buffer
+                    Operating Systems Buffer
                   </span>
                   <span className="text-xl font-black text-emerald-700 dark:text-emerald-400">
                     +5 Classes Safe
