@@ -69,15 +69,8 @@ export function Hero() {
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-color)] leading-[1.12]">
             Stop Doing{" "}
-            <span className="group/att relative inline-block cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5">
-              <span className="relative z-10 transition-all duration-300 group-hover/att:text-transparent group-hover/att:bg-clip-text group-hover/att:bg-gradient-to-r group-hover/att:from-indigo-600 group-hover/att:via-purple-600 group-hover/att:to-pink-500 dark:group-hover/att:from-indigo-400 dark:group-hover/att:via-purple-300 dark:group-hover/att:to-pink-400">
-                Attendance
-              </span>
-              {/* Ethereal violet atmospheric aura */}
-              <span
-                aria-hidden="true"
-                className="absolute -inset-x-3 -inset-y-1 rounded-2xl bg-indigo-500/0 blur-xl group-hover/att:bg-indigo-500/25 dark:group-hover/att:bg-indigo-500/35 transition-all duration-300 pointer-events-none"
-              />
+            <span className="inline-block cursor-pointer transition-transform duration-200 hover:scale-105 hover:-translate-y-0.5 text-[var(--text-color)]">
+              Attendance
             </span>{" "}
             <br className="hidden sm:inline" />
             Math on a Calculator
