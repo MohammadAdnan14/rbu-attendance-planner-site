@@ -47,13 +47,18 @@ export function Button({
           target="_blank"
           rel="noopener noreferrer"
           className={combinedClasses}
+          onClick={props.onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
         >
           {children}
         </a>
       );
     }
     return (
-      <Link href={href} className={combinedClasses}>
+      <Link
+        href={href}
+        className={combinedClasses}
+        onClick={props.onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+      >
         {children}
       </Link>
     );

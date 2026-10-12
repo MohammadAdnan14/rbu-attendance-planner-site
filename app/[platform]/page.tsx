@@ -22,6 +22,7 @@ import {
   Star,
   ArrowRight,
   ArrowUpRight,
+  Clock,
 } from "lucide-react";
 
 const platformMeta: Record<
@@ -56,11 +57,11 @@ const platformMeta: Record<
   firefox: {
     fullName: "Mozilla Firefox",
     tagline: "Firefox Add-ons (AMO)",
-    ecosystem: "Official AMO store listing for Firefox desktop.",
-    badge: "Available Now",
+    ecosystem: "Official AMO store listing for Firefox desktop (under review).",
+    badge: "Under Review",
     badgeColor:
-      "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    gradient: "from-orange-500/10 to-pink-500/10",
+      "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/25",
+    gradient: "from-orange-500/10 via-amber-500/5 to-pink-500/10",
   },
   safari: {
     fullName: "Apple Safari",
@@ -195,9 +196,16 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
             />
 
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <Badge variant="accent" size="sm">
-                Official {info.name} Distribution
-              </Badge>
+              {platformKey === "firefox" ? (
+                <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                  Under Store Review
+                </span>
+              ) : (
+                <Badge variant="accent" size="sm">
+                  Official {info.name} Distribution
+                </Badge>
+              )}
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[var(--card-bg)] text-[var(--text-muted)] border border-slate-200/80 dark:border-[var(--border-color)]">
                 v1.0.0 Stable
               </span>
@@ -215,6 +223,19 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                 ? "Direct unpacked distribution for Apple Safari 17+ on macOS Sonoma and Sequoia."
                 : `Add the attendance calculator to ${info.name} and view real-time safe bunk calculations on your college portal.`}
             </p>
+
+            {/* Firefox Review Alert Banner */}
+            {platformKey === "firefox" && (
+              <div className="mt-6 p-4 sm:p-5 rounded-2xl border border-amber-300/80 dark:border-amber-500/30 bg-amber-50/90 dark:bg-amber-500/10 shadow-sm flex items-start gap-3.5">
+                <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5 animate-pulse" />
+                <div className="text-xs sm:text-sm leading-relaxed text-amber-950 dark:text-amber-200">
+                  <strong className="font-semibold block mb-0.5 text-sm">
+                    Mozilla Store Review in Progress:
+                  </strong>
+                  The RBU Attendance Planner extension for Firefox is currently under review by Mozilla. Kindly check back in a few days.
+                </div>
+              </div>
+            )}
 
             {/* Main Action Bar */}
             <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
@@ -252,17 +273,18 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                   }
 
                   return (
-                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                       <Button
                         variant="secondary"
                         size="lg"
                         disabled
-                        className="cursor-not-allowed opacity-75"
+                        className="cursor-not-allowed opacity-85 border-amber-400/40 bg-amber-500/10 text-amber-900 dark:text-amber-200"
                       >
-                        Store Listing Review in Progress
+                        <Clock className="w-4 h-4 mr-2 text-amber-600 dark:text-amber-400" />
+                        Extension Under Review
                       </Button>
                       <span className="text-xs text-[var(--text-muted)]">
-                        Approval expected shortly
+                        Kindly check back in a few days
                       </span>
                     </div>
                   );
@@ -510,9 +532,9 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                         Install from the store
                       </h3>
                       <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                        Click the primary installation button above to open the
-                        official store listing and click &ldquo;Add to{" "}
-                        {info.name}&rdquo;.
+                        {platformKey === "firefox"
+                          ? "Once Mozilla's store review concludes, click the install button above to open the official AMO listing."
+                          : `Click the primary installation button above to open the official store listing and click "Add to ${info.name}".`}
                       </p>
                     </div>
                   </Card>
@@ -635,7 +657,13 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
                         <span
                           className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${meta.badgeColor} flex items-center gap-1.5`}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              p === "firefox"
+                                ? "bg-amber-500"
+                                : "bg-emerald-500"
+                            } animate-pulse`}
+                          />
                           {meta.badge}
                         </span>
                         <ArrowUpRight className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--accent-color)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

@@ -16,9 +16,14 @@ async function main() {
 
   const redis = getRedis();
 
+  const now = new Date().toISOString();
+
   // Reset Safari counters
   await redis.set("counter:safari_downloads", 0);
-  await redis.set("counter:safari_downloads:updatedAt", new Date().toISOString());
+  await redis.set("counter:safari_downloads:updatedAt", now);
+
+  // Reset manual Chrome count
+  await redis.set("stats:chrome", { count: 0, updatedAt: now });
 
   // Reset internal click trackers
   await redis.set("clicks:safari", 0);
@@ -26,12 +31,20 @@ async function main() {
   await redis.set("clicks:edge", 0);
   await redis.set("clicks:firefox", 0);
 
+  // Clear any existing test dedupe keys
+  const dedupes = await redis.keys("dedupe:*");
+  if (dedupes.length > 0) {
+    await Promise.all(dedupes.map((k) => redis.del(k)));
+  }
+
   console.log("\n✓ Successfully reset testing counts to 0!");
   console.log("  - counter:safari_downloads -> 0");
+  console.log("  - stats:chrome             -> 0");
   console.log("  - clicks:safari            -> 0");
   console.log("  - clicks:chrome            -> 0");
   console.log("  - clicks:edge              -> 0");
-  console.log("  - clicks:firefox           -> 0\n");
+  console.log("  - clicks:firefox           -> 0");
+  console.log(`  - dedupe keys cleared      -> ${dedupes.length}\n`);
 }
 
 main().catch((error: unknown) => {

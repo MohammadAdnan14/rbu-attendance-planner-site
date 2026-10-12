@@ -134,13 +134,13 @@ export function StatsStrip() {
                 <span className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">
                   Firefox
                 </span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               </div>
-              <div className="text-xl sm:text-2xl font-bold text-[var(--text-color)]">
-                Live
+              <div className="text-xl sm:text-2xl font-bold text-amber-600 dark:text-amber-400">
+                Review
               </div>
               <div className="text-[11px] text-[var(--text-muted)] mt-1 truncate">
-                AMO Store Listing
+                Under Store Review
               </div>
             </div>
 
