@@ -44,7 +44,11 @@ export function StatsStrip() {
 
   const showPlaceholder =
     stats?.showPlaceholder ?? siteConfig.stats.showPlaceholder;
-  const displayTotal = showPlaceholder ? "100+" : `${stats?.total || 100}+`;
+  const placeholderText =
+    (stats?.placeholderTotal ?? siteConfig.stats.placeholderTotal)
+      ?.replace(/\s*downloads/i, "")
+      .trim() || "200+";
+  const displayTotal = showPlaceholder ? placeholderText : `${stats?.total || 200}+`;
 
   return (
     <section className="py-12 sm:py-16 border-y border-[var(--border-color)] bg-gradient-to-b from-[var(--card-bg)]/20 via-[var(--card-bg)]/50 to-[var(--card-bg)]/20 relative overflow-hidden">
