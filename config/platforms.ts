@@ -14,7 +14,8 @@ export const platforms = {
   },
   firefox: {
     name: "Firefox",
-    storeUrl: "#",
+    storeUrl:
+      "https://addons.mozilla.org/en-US/firefox/addon/rbu-attendance-planner/",
     statsSource: "auto",
     amoSlug: "rbu-attendance-planner",
   },

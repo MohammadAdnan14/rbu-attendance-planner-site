@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Badge } from "./ui/Badge";
-import { ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 type BrowserKey = "chrome" | "edge" | "firefox" | "safari" | null;
 
@@ -24,8 +24,8 @@ const platformData = [
     id: "firefox",
     name: "Firefox",
     href: "/firefox",
-    subtitle: "Under review · Check back soon",
-    isReview: true,
+    subtitle: "Firefox Add-ons (AMO)",
+    isLive: true,
   },
   {
     id: "safari",
@@ -80,7 +80,7 @@ export function PlatformButtons({ className = "" }: { className?: string }) {
       >
         {platformData.map((platform) => {
           const isDetected = detectedBrowser === platform.id;
-          const isReview = "isReview" in platform && platform.isReview;
+          const isLive = "isLive" in platform && platform.isLive;
 
           return (
             <Link
@@ -109,10 +109,10 @@ export function PlatformButtons({ className = "" }: { className?: string }) {
                       Your browser
                     </Badge>
                   )}
-                  {isReview && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                      Under Review
+                  {isLive && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      Live
                     </span>
                   )}
                 </div>
@@ -122,11 +122,11 @@ export function PlatformButtons({ className = "" }: { className?: string }) {
         })}
       </div>
 
-      {/* Firefox Review Status Note */}
-      <div className="mt-3.5 px-4 py-2.5 rounded-xl border border-amber-300/80 dark:border-amber-500/30 bg-amber-50/90 dark:bg-amber-500/10 text-xs text-amber-950 dark:text-amber-200 flex items-center justify-center gap-2 text-center shadow-xs">
-        <Clock className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+      {/* Firefox Live Status Note */}
+      <div className="mt-3.5 px-4 py-2.5 rounded-xl border border-emerald-300/80 dark:border-emerald-500/30 bg-emerald-50/90 dark:bg-emerald-500/10 text-xs text-emerald-950 dark:text-emerald-200 flex items-center justify-center gap-2 text-center shadow-xs">
+        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
         <span>
-          <strong className="font-semibold">Firefox note:</strong> The extension is currently under store review by Mozilla. Kindly check back in a few days.
+          <strong className="font-semibold">Firefox note:</strong> The Firefox extension is now live on Mozilla Add-ons!
         </span>
       </div>
     </div>
