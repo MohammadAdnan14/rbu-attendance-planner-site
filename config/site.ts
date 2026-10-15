@@ -10,7 +10,7 @@ export const siteConfig = {
   badge: "Built for Ramdeobaba University students",
   stats: {
     showPlaceholder: true,
-    placeholderTotal: "200+ Downloads",
+    placeholderTotal: "250+ Downloads",
     footnote: "Chrome, Edge, Firefox and Safari count.",
   },
   safariRequirements: [
